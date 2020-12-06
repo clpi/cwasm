@@ -5,6 +5,7 @@
 <main>
   <h1>Chris Pecunies</h1>
   <p>Visit <a href="http://chris.pecunies.com">chris.pecunies.com</a> for now!</p>
+  <p>Email me at im @t clp d0t is for any questions!</p>
 </main>
 
 <style>
