@@ -1,22 +1,18 @@
-<script lang="ts">
-	export let name: string;
+<script>
+	export let name;
 </script>
 
 <main>
-  <!-- <img src="build/img/default.png"/> -->
-  <img  src="build/img/profile.png"/>
-  <p>Visit <a href="http://chris.pecunies.com">chris.pecunies.com</a> for now!</p>
-  <p>Email me at clp @t clp d0t is for any questions!</p>
+	<h1>Welcome to clp.is</h1>
+  <p>I'm Chris Pecunies. This website is under construction -- visit <a href="http://chris.pecunies.com">my other website</a> instead</p>
 </main>
 
 <style>
 	main {
 		text-align: center;
-    overflow: hidden;
-    color: #fdf3fb;
-    background: #261b24;
-      margin: 0;
-      padding: 0;
+		padding: 1em;
+		max-width: 240px;
+		margin: 0 auto;
 	}
 
 	h1 {
@@ -25,7 +21,6 @@
 		font-size: 4em;
 		font-weight: 100;
 	}
-
 
 	@media (min-width: 640px) {
 		main {

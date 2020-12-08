@@ -1,9 +1,9 @@
 /node_modules/
-**node_modules/
-**target/
 /public/build/
 
 .DS_Store
+**target/
+**node_modules/
 **package-lock.json
-.vercel
-.vscode
+
+
