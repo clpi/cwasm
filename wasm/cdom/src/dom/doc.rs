@@ -28,6 +28,19 @@ pub fn body() -> web_sys::HtmlBodyElement {
         .expect("Could not convert to body element")
 }
 
+pub fn append<N, T>(node: N) -> T
+    where
+        N: Into<web_sys::Node>,
+        T: AsRef<HtmlElement>
+            + Into<HtmlElement>
+            + JsCast
+{
+    body().append_child(&node.into())
+        .expect("Could not append element")
+        .dyn_into::<T>()
+        .expect("Could not convert to element")
+}
+
 pub fn _p(contents: Option<&str>, id: Option<&str>) -> Option<web_sys::HtmlParagraphElement> {
     _get::<web_sys::HtmlParagraphElement>("p", contents, id)
 }
