@@ -42,7 +42,7 @@ extern {
     fn alert(s: &str);
 }
 
-#[wasm_bindgen(js="testEcho")]
+#[wasm_bindgen]
 pub fn echo(input: String) -> JsValue {
     let echo = format!("Hello, {}", input);
     JsValue::from_str(&echo)
