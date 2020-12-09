@@ -1,8 +1,6 @@
-pub mod utils;
-pub mod dom;
+mod utils;
 
 use wasm_bindgen::prelude::*;
-use dom::{doc, win};
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -15,3 +13,7 @@ extern {
     fn alert(s: &str);
 }
 
+#[wasm_bindgen]
+pub fn greet() {
+    alert("Hello, cmdp!");
+}

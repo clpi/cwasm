@@ -2,11 +2,14 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "wasm-pack build && rollup -c",
-    "dev": "wasm-pack build && rollup -c -w",
-    "start": "wasm-pack build && sirv public",
-    "wbuild": "wasm-pack build",
-    "wtest": "wasm-pack test"
+    "b": "rollup -c",
+    "dev": "rollup -c -w",
+    "wdev": "wasm-pack build && rollup -c -w",
+    "start": "sirv public",
+    "wstart": "wasm-pack build && sirv public",
+    "wb": "wasm-pack build",
+    "wbw": "wasm-pack build --target web",
+    "wt": "wasm-pack test"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
