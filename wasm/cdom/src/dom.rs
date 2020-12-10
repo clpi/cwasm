@@ -3,6 +3,7 @@ pub mod element;
 pub mod css;
 pub mod vdom;
 pub mod attribute;
+pub mod event;
 
 pub fn win() -> web_sys::Window {
     web_sys::window()

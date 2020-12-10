@@ -1,6 +1,0 @@
-[workspace]
-members = [
-  "wasm/cdom",
-  "wasm/cmdp",
-  "wasm/cpar"
-]

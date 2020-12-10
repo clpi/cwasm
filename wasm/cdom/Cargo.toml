@@ -5,6 +5,7 @@ authors = ["clp <clp@clp.is>"]
 edition = "2018"
 
 [lib]
+name = "cdom"
 crate-type = ["cdylib", "rlib"]
 path = "src/lib.rs"
 
@@ -73,6 +74,7 @@ features = [
     "DragEvent",
     "Element",
     "Event",
+    "EventListener",
     "ErrorEvent",
     "EventTarget",
     "File",

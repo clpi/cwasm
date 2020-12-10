@@ -8,7 +8,7 @@ pub mod dom;
 
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::JsFuture;
-use js_sys::Reflect;
+use js_sys::{JsString, Reflect};
 use dom::{doc, win};
 use web_sys::{MessageEvent, Event};
 
@@ -46,18 +46,26 @@ extern {
 pub fn echo(input: String) -> JsValue {
     let echo = format!("Hello, {}", input);
     JsValue::from_str(&echo)
+    //JsValue::from_str(&echo)
+}
+
+#[wasm_bindgen(js_name="echoTwo")]
+pub fn echo2(input: JsString) -> JsValue {
+    let echo = format!("Hello, {}", input.as_string().unwrap());
+    JsValue::from_str(&echo)
 }
 
 #[wasm_bindgen(start)]
-pub fn init() {
+pub fn run() {
     let onmessage_callback =
     Closure::wrap(
         Box::new(move |ev: MessageEvent| match ev.data().as_string() {
             Some(message) => {
-                unsafe{console_warn!("{:?}", message)};
+              unsafe{console_warn!("{:?}", message)};
             }
             None => {}
         }) as Box<dyn FnMut(MessageEvent)>,
     );
+    unsafe { console_log!("FDSF") }
 
 }

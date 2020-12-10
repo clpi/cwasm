@@ -1,4 +1,4 @@
-use wasm_bindgen::*;
+use wasm_bindgen::prelude::*;
 use web_sys::console;
 pub fn set_panic_hook() {
     // When the `console_error_panic_hook` feature is enabled, we can call the
@@ -22,3 +22,15 @@ pub unsafe fn rand_betwe(min: f64, max: f64) -> f64 {
 pub unsafe fn rand_int(n: i32) -> i32 {
     (js_sys::Math::random() * n as f64) as i32
 }
+
+pub struct Callb(Closure<dyn FnMut()>);
+
+impl Callb {
+    pub fn new<F>(f: F) -> Callb
+        where
+            F: FnMut() + 'static,
+    {
+        Self(Closure::wrap(Box::new(f) as Box<dyn FnMut()>))
+    }
+}
+
