@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width,initial-scale=1'>
-
-	<title>Svelte app</title>
-
-	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
-	<link rel='stylesheet' href='/build/bundle.css'>
-
-	<script defer src='/build/bundle.js'></script>
-</head>
-
-<body>
-</body>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" href="index.css">
+    <title>clp.is</title>
+  </head>
+  <body>
+    <h1>Hello there!</h1>
+    <canvas id="canvas" height="150" width="150" />
+    <script type="module" src="index.js">
+    <script type="module">
+      import init from './build/cdom.js';
+      init().catch(console.error);
+    </script>
+    <p>hd</p>
+  </body>
 </html>

@@ -1,27 +1,36 @@
 [package]
 name = "cdom"
 version = "0.1.0"
-authors = ["clp <clp@clp.is>"]
+authors = ["Chris P <chrisp1877@gmail.com>"]
 edition = "2018"
 
 [lib]
-name = "cdom"
 crate-type = ["cdylib", "rlib"]
-path = "src/lib.rs"
+name = "cdom"
+path = "wasm/cdom/lib.rs"
 
 [features]
 default = ["console_error_panic_hook"]
 
 [dependencies]
-wasm-bindgen = { version = "*", features = ["serde-serialize"] }
 wasm-bindgen-futures = "*"
-lazy_static = "*"
-thiserror = "*"
-# serde_traitobject = "*"
-# serde_cosure = "*"
-# dodrio = "*"
-# gloo-timers = "*"
-# gloo-file = "*"
+js-sys = "*"
+indexmap = "1.5"
+wasm-bindgen = {version = "0.2.63", features = ["serde-serialize"]}
+pulldown-cmark = "*"
+once_cell = "1.3.1"
+serde = {version = "1", features = ["derive"]}
+serde_json = "1"
+instant = "*"
+console_log = "*"
+rand = { version = "*", features = ["wasm-bindgen", "small_rng"] }
+# wasm-timer = "*"
+chrono = "0.4.11"
+reqwest = "0.10.6"
+gloo = "*"
+gloo-timers = "*"
+gloo-events = "*"
+
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
@@ -35,42 +44,19 @@ console_error_panic_hook = { version = "0.1.6", optional = true }
 #
 # Unfortunately, `wee_alloc` requires nightly Rust when targeting wasm for now.
 wee_alloc = { version = "0.4.5", optional = true }
-
-# indexmap = "*"
-js-sys = "*"
-# rayon = "*"
-# rayon-core = "*"
-
-serde = { version = "*", features = ["derive"] }
-instant = "*"
-console_log = "*"
-# serde_json = "*"
-# lite-parser = "*"
-# lite-json = "*"
-wasm-timer = "*"
-rand = { version = "*", features = ["wasm-bindgen", "small_rng"] }
-# futures = "*"
-# uuid = { version = "*", features = ["v4", "wasm-bindgen"] }
-# pulldown-cmark = "*"
-# image = "*"
-
+futures = "*"
 
 [dependencies.web-sys]
 version = "*"
 features = [
-    "AbortController",
-    "AbortSignal",
-    "BeforeUnloadEvent",
     "Blob",
-    "BinaryType",
     "CanvasRenderingContext2d",
-    "CloseEvent",
+    "AnimationEvent",
     "console",
-    "CustomEvent",
-    "CustomEventInit",
     "DataTransfer",
     "Document",
-    "DomException",
+    "DomTokenList",
+    "ObserverCallback",
     "DragEvent",
     "Element",
     "Event",
@@ -85,7 +71,6 @@ features = [
     "History",
     "HtmlElement",
     "HtmlCanvasElement",
-    "HtmlCollection",
     "HtmlDocument",
     "HtmlBodyElement",
     "HtmlInputElement",
@@ -116,7 +101,6 @@ features = [
     "Performance",
     "ProgressEvent",
     "PointerEvent",
-    "PopStateEvent",
     "ReferrerPolicy",
     "Request",
     "RequestCache",
@@ -140,11 +124,12 @@ features = [
     "Url",
     "UrlSearchParams",
     "WebSocket",
-    "WebGlBuffer",
-    "WebGlRenderingContext",
-    "WebGlShader",
     "Worker",
+    "WorkerOptions",
+    "WorkerGlobalScope",
     "DedicatedWorkerGlobalScope",
+    "WheelEvent",
+    "BinaryType"
 ]
 
 [dev-dependencies]
@@ -153,7 +138,3 @@ wasm-bindgen-test = "0.3.13"
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
-lto = true
-codegen-units = 1
-panic = 'abort'
-

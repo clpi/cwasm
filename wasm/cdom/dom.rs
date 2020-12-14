@@ -1,15 +1,18 @@
-// TODO decide whether to return specific html element subtypes or HtmlElement
-// TODO reduce redundancy in match checks for get function
-use std::{
-    rc::Rc,
-    cell::RefCell,
-};
-use wasm_bindgen::prelude::*;
-use wasm_bindgen::{JsCast, JsValue, prelude::Closure};
 use web_sys::{
-    window, Element, HtmlElement,
+    HtmlElement, Element
 };
-use super::win;
+use wasm_bindgen::{JsCast, prelude::*};
+
+pub fn win() -> web_sys::Window {
+
+    web_sys::window()
+        .expect("Could not initialize window")
+}
+
+pub fn hist() -> web_sys::History {
+    win().history()
+        .expect("Could not initialize history")
+}
 
 pub fn doc() -> web_sys::Document {
     win().document()
@@ -111,25 +114,6 @@ pub fn req_animation_frame(f: &Closure<dyn FnMut()>) {
     win()
         .request_animation_frame(f.as_ref().unchecked_ref())
         .expect("Should register 'requestAnimationFrame'");
-}
-
-pub fn anim() -> Result<(), JsValue> {
-    let f = Rc::new(RefCell::new(None));
-    let g = f.clone();
-    let mut i = 0;
-    *g.borrow_mut() = Some(Closure::wrap(Box::new(move || {
-        if i> 300 {
-            body().set_text_content(Some("All done"));
-            let _ = f.borrow_mut().take();
-            return;
-        }
-        i += 1;
-        let txt = format!("requestAnimationFrame has been called {} times", i);
-        body().set_text_content(Some(&txt));
-        req_animation_frame(f.borrow().as_ref().unwrap());
-    }) as Box<dyn FnMut()>));
-    req_animation_frame(g.borrow().as_ref().unwrap());
-    Ok(())
 }
 
 /// Convenience base function to get element by id (if exists) or create new
