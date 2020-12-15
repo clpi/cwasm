@@ -7,7 +7,10 @@
   "author": "Chris P <clp@clp.is>",
   "license": "MIT",
   "scripts": {
-    "dev": "./run.sh",
-    "build": "wasm-pack build --target web --debug -d public/build/"
+    "wdev": "./run.sh",
+    "wbuild": "wasm-pack build --target web --debug -d public/build/"
+  },
+  "dependencies": {
+    "sirv-cli": "^1.0.10"
   }
 }
